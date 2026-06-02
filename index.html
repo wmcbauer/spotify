@@ -15,8 +15,17 @@
 </head>
 
 <body>
+
+    <!-- Botão hamburguer (aparece só no mobile) -->
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Overlay escuro ao abrir o menu -->
+    <div class="nav-overlay" id="nav-overlay"></div>
+
     <div class="container">
-        <nav>
+        <nav id="nav">
             <div class="nav-logo"> <i class="fa fa-spotify" aria-hidden="true"></i></div>
 
             <div class="nav-library">
@@ -42,24 +51,22 @@
                 <a href="#">Acessibilidade</a>
             </div>
             <button class="nav-lang-button">
-                <i class="fa-solid fa-globe"></i>Português do Brasil
+                <i class="fa-solid fa-globe"></i> Português do Brasil
             </button>
         </nav>
+
         <main>
             <div class="container-header">
                 <header class="search-bar">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" placeholder="O que você quer ouvir?">
-
                 </header>
                 <div>
                     <button>buscar</button>
                 </div>
             </div>
             <div class="grids-conf">
-
                 <section class="container-artist">
-
                     <h2>Artistas Populares</h2>
                     <br>
                     <div class="artist-grid"></div>
@@ -71,15 +78,34 @@
             </div>
         </main>
     </div>
+
     <div class="banner">
         <div>
             <h2>Premium de graça</h2>
-            <p>Increva-se para curtir músicas ilimitadas só com alguns anúncios.Não precisa de um cartão de crédito</p>
-
+            <p>Increva-se para curtir músicas ilimitadas só com alguns anúncios. Não precisa de um cartão de crédito</p>
         </div>
         <button>increva-se</button>
     </div>
-</body>
-<script src="./scripts.js"></script>
 
+    <script src="./scripts.js"></script>
+    <script>
+        // Menu hamburguer
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.getElementById('nav');
+        const overlay = document.getElementById('nav-overlay');
+
+        function openMenu() {
+            nav.classList.add('open');
+            overlay.classList.add('open');
+        }
+
+        function closeMenu() {
+            nav.classList.remove('open');
+            overlay.classList.remove('open');
+        }
+
+        hamburger.addEventListener('click', openMenu);
+        overlay.addEventListener('click', closeMenu);
+    </script>
+</body>
 </html>

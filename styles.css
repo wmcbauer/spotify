@@ -15,24 +15,21 @@ body {
     height: 100vh;
 }
 
-
-
 nav {
     display: flex;
     width: 15%;
+    min-width: 200px;
     background-color: #121212;
     padding: 24px 24px 90px 24px;
-    display: flex;
     flex-direction: column;
     gap: 20px;
+    overflow-y: auto;
 }
-
 
 .nav-library {
     display: flex;
     align-items: center;
     gap: 10px;
-
 }
 
 .nav-logo {
@@ -78,7 +75,6 @@ nav {
     margin-bottom: 8px;
     color: #ffffff;
     flex-direction: column;
-
 }
 
 .nav-lang-button {
@@ -92,11 +88,9 @@ nav {
 }
 
 main {
-
     padding: 24px;
     flex-grow: 1;
     overflow-y: auto;
-
 }
 
 .container-header {
@@ -104,7 +98,7 @@ main {
     width: 100%;
     gap: 30%;
     justify-content: center;
-
+    margin-bottom: 40px;
 }
 
 .search-bar {
@@ -114,9 +108,7 @@ main {
     padding: 8px 16px;
     border-radius: 20px;
     width: 400px;
-
 }
-
 
 .search-bar input {
     background-color: transparent;
@@ -137,20 +129,14 @@ main {
     cursor: pointer;
     border-radius: 20px;
     font-size: 12px;
-
 }
-
-
 
 .artist-grid,
 .album-grid {
-
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 24px;
     margin-bottom: 40px;
-
-
 }
 
 .album-card,
@@ -164,13 +150,11 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-
 }
 
 .album-card:hover,
 .artist-card:hover {
     background-color: #282828;
-
 }
 
 .album-card:active,
@@ -184,16 +168,6 @@ main {
     border-radius: 50%;
     margin-bottom: 16px;
     max-height: 70%;
-}
-
-.album-card h3,
-.artist-card h3 {}
-
-.album-card p,
-.artist-card p {}
-
-header {
-    margin-bottom: 40px;
 }
 
 a:hover,
@@ -217,6 +191,7 @@ button:active {
     align-items: center;
     padding: 8px 14px;
     width: 100%;
+    z-index: 100;
 }
 
 .banner p {
@@ -225,7 +200,6 @@ button:active {
 
 .banner h2 {
     font-size: 14px;
-
 }
 
 .banner button {
@@ -234,4 +208,142 @@ button:active {
     color: #000000;
     border: none;
     padding: 12px 20px;
+}
+
+/* ===== MENU HAMBURGUER (mobile) ===== */
+.hamburger {
+    display: none;
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 200;
+    background: #121212;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 8px 10px;
+    border-radius: 8px;
+}
+
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 150;
+}
+
+/* ===== TABLET (até 1024px) ===== */
+@media (max-width: 1024px) {
+    nav {
+        width: 200px;
+        min-width: unset;
+    }
+
+    .container-header {
+        gap: 10%;
+    }
+
+    .search-bar {
+        width: 280px;
+    }
+
+    .artist-grid,
+    .album-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 16px;
+    }
+}
+
+/* ===== MOBILE (até 768px) ===== */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 75%;
+        max-width: 280px;
+        height: 100vh;
+        z-index: 160;
+        padding: 60px 20px 120px 20px;
+        transition: left 0.3s ease;
+        overflow-y: auto;
+    }
+
+    nav.open {
+        left: 0;
+    }
+
+    .nav-overlay.open {
+        display: block;
+    }
+
+    .container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    main {
+        padding: 70px 16px 100px 16px;
+        width: 100%;
+    }
+
+    .container-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .container-header button {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .artist-grid,
+    .album-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 12px;
+    }
+
+    .album-card,
+    .artist-card {
+        padding: 12px;
+    }
+
+    .banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .banner button {
+        width: 100%;
+        padding: 10px;
+    }
+}
+
+/* ===== TELAS MUITO PEQUENAS (até 400px) ===== */
+@media (max-width: 400px) {
+    .artist-grid,
+    .album-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    main {
+        padding: 70px 12px 130px 12px;
+    }
 }
